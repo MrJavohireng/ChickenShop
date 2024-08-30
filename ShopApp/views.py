@@ -31,11 +31,6 @@ class DetailOrderView(View):
 class MainPage(ListView):
     queryset=Orders.objects.all()
     context_object_name="orders"
-    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
-        
-        return super().get_context_data(**kwargs)
-        
-    
 
 class CreateOrderView(View):
     def get(self, request):
