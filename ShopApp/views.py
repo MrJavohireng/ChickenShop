@@ -1,20 +1,16 @@
+from typing import Any
 from django.shortcuts import render
 from django.views import View
-from django.views.generic import ListView, UpdateView, DeleteView, CreateView, DetailView
+from django.views.generic import ListView
 from .models import Orders
 from django.http import HttpResponse
 from .forms import OrderForm
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-
-
-def MainPagee(request):
-    return HttpResponse("Salom")
-
 class DetailOrderView(View):
     def get(self, request, pk):
         object=Orders.objects.get(pk=pk)
-        context={"form":OrderForm(data={"address":object.address, "kg":object.kg, "price":object.price, "debt":object.debt, "give":object.give, }), "object":object,}
+        context={"form":OrderForm(data={"address":object.address, "kg":object.kg, "price":object.price, "debt":object.debt, "give":object.give, }), "object":object,"remain":object.price-object.give,}
         return render(request=request, template_name="ShopApp/orders_detail.html", context=context)
     def post(self,request, pk):
         form=OrderForm(request.POST)
@@ -35,6 +31,10 @@ class DetailOrderView(View):
 class MainPage(ListView):
     queryset=Orders.objects.all()
     context_object_name="orders"
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        
+        return super().get_context_data(**kwargs)
+        
     
 
 class CreateOrderView(View):
