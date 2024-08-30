@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "./css/orders_detail.css" %}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav>
+          <a href="{% url "ShopApp:main" %}">Chicken Shop</a>
+          <a href="{% url "ShopApp:create" %}">Add</a>
+  
+        </nav>
+      </header>
+      <section>
+        <div class="container">
+            <form method="post">{% csrf_token %}
+                <span>Address: {{ form.address }}</span>
+                <span>Kilogram: {{ form.kg }}</span>
+                <span>Narx: {{ form.price }}</span>
+                <span>Qarzgami: {{ form.debt }}</span>
+                <span>Qancha bergan: {{ form.give }}</span>
+                <span>Sana: {{ object.date }}</span>
+
+            <input type="submit", value="Yangilash">
+        </form>
+        <a href="{% url "ShopApp:delete" object.pk %}">O'chirish</a>
+
+
+        </div>
+      </section>
+</body>

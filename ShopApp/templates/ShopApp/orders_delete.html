@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/orders_delete.css" %}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav>
+          <a href="{% url "ShopApp:main" %}">Chicken Shop</a>
+          <a href="{% url "ShopApp:create" %}">Add</a>
+  
+        </nav>
+      </header>
+      <section>
+        <div class="container">
+
+            <h1>Address: <span>{{ object.address }}</span></h1>
+            <h1>Kilogram: <span>{{ object.kg }}</span></h1>
+            <h1>Narx: <span>{{ object.price }}</span></h1>
+            {% if object.debt %}
+            <h1>Qarzgami: <span>Ha</span></h1>
+            {% else %}
+            <h1>Qarzgami: <span>Yo'q</span></h1>
+            {% endif %}
+            <h1>Qancha bergan: <span>{{ object.give }}</span></h1>
+            <h1>Sana: <span>{{ object.date }}</span></h1>
+
+            <form method="post">{% csrf_token %}
+                <input type="submit" value="O'chirish">
+            </form>
+            <a href="{% url "ShopApp:main" %}">Bosh menyuga qaytish</a>
+        </div>
+
+</section>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static "./css/orders_list.css" %}">
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="{% url "ShopApp:main" %}">Chicken Shop</a>
+        <a href="{% url "ShopApp:create" %}">Add</a>
+
+      </nav>
+    </header>
+    <section>
+      <div class="container">
+        {% for order in orders %}
+        <a href="{% url "ShopApp:detail" pk=order.id %}">
+        <div class="order">
+          <h1>Adres: {{ order.address }}</h1>
+          <h2>{{ order.kg }}-kg <span>{{ order.price }}-sum</span></h2>
+          <h3>
+            Qarzgami: {% if order.debt %}Ha
+            <h4>Qancha berdi: {{ order.give }}</h4>
+            {% else %}Yo'q {% endif %}
+          </h3>
+
+          <h5>Sana: {{ order.date }}</h5>
+        </div></a>
+        {% endfor %}
+      </div>
+    </section>
+  </body>
+</html>
