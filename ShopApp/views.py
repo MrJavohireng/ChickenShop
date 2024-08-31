@@ -27,7 +27,6 @@ class DetailOrderView(View):
             Orders.objects.filter(pk=pk).update(address=address,kg=kg,price=price,debt=debt,give=give)
         return HttpResponseRedirect(reverse("ShopApp:main"))
             
-
 class MainPage(ListView):
     queryset=Orders.objects.all()
     context_object_name="orders"
