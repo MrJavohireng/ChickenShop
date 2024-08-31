@@ -4,9 +4,9 @@ from django.urls import reverse
 class Orders(models.Model):
     address=models.TextField()
     kg=models.DecimalField(default=0, max_digits=5, decimal_places=2)
-    price=models.DecimalField(max_digits=5, decimal_places=1)
+    price=models.DecimalField(max_digits=20, decimal_places=1)
     debt=models.BooleanField(default=False)
-    give=models.DecimalField(max_digits=5, decimal_places=1, default=0)
+    give=models.DecimalField(max_digits=20, decimal_places=1, default=0)
     date=models.DateTimeField(auto_now_add=True)
     def __str__(self) -> str:
         if len(self.address)>=15:
